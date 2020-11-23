@@ -1,11 +1,9 @@
 package com.rompermission.requester
 
-import com.rompermission.PermissionCallback
+import com.rompermission.result.Permission
 
 interface IRomPermissionRequester {
-    fun checkAndRequest(host: Any, permissions: Array<String>, messageResId: Int, callback: PermissionCallback?): Boolean
+    fun check(host: Any, permissions: Array<Permission>)
 
-    fun checkAndRequest(host: Any, permissions: Array<String>, message: String, callback: PermissionCallback?): Boolean
-
-    fun check(host: Any, permissions: Array<String>): Boolean
+    fun checkAndRequest(host: Any, permissions: Array<Permission>, callback: (Array<Permission>) -> Unit)
 }

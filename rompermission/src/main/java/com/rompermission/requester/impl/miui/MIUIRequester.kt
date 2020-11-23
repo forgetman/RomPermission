@@ -3,15 +3,15 @@ package com.rompermission.requester.impl.miui
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import androidx.activity.ComponentActivity
 import com.rompermission.requester.impl.RomRequester
 
 
 abstract class MIUIRequester : RomRequester() {
 
-    override fun doAlertWindowRequest(host: Any): Boolean {
-        val context = getContext(host)
-        return if (!hasAlertWindowPermission(context)) {
-            applyAlterPermission(context)
+    override fun doAlertWindowRequest(activity: ComponentActivity, block: ((permitted: Boolean) -> Unit)?): Boolean {
+        return if (!hasAlertWindowPermission(activity)) {
+            applyAlterPermission(activity)
             false
         } else {
             true
